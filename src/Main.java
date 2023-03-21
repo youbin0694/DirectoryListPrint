@@ -9,17 +9,16 @@ public class Main {
      * 
      * @author yblee
      * @since 2023.03.20
-     * 
      */
     public static void main(String[] args) throws Exception {
-        List<String> dir = new ArrayList<>();
-        DirectroyListPrint targetDir = new DirectroyListPrint();
+        List<String> fileNames = new ArrayList<>();
+        DirectroyListPrint directoryListPrint = new DirectroyListPrint();
         try {
-            File f = new File("/home/ubin/Documents/Test/");
-            dir = targetDir.printFile(f);
-            System.out.println(dir);
+            File targetDirectory = new File("/home/ubin/Documents/Test/");
+            fileNames = directoryListPrint.printFile(targetDirectory);
+            System.out.println(fileNames);
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 }

@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,7 +8,6 @@ import java.util.List;
  * 
  * @author yblee
  * @since 2023.03.20
- * 
  */
 public class DirectroyListPrint {
     // 타켓 디렉터리의 하위 디렉터리/파일 이름을 담는 리스트
@@ -18,15 +16,17 @@ public class DirectroyListPrint {
     /**
      * 타켓 디렉터리를 기준으로 순회하는 메서드
      * 
+     * @param directory 경로에 해당되는 파일 객체
+     * @return 파일 이름이 담긴 리스트
+     * 
      * @author yblee
      * @since 2023.03.20
-     * 
      */
-    public List<String> printFile(File f) throws Exception{
+    public List<String> printFile(File directory) throws FileNotFoundException {
         // 파일 배열에 받아온 파일의 목록을 담아준다.
-        File[] files = f.listFiles();
+        File[] files = directory.listFiles();
         // 더 이상 순회할 디렉터리/파일이 없다면
-        if (!f.exists()) {
+        if (!directory.exists()) {
             throw new FileNotFoundException("경로가 없습니다.");
         } else {
             for (File file : files) {
@@ -35,7 +35,8 @@ public class DirectroyListPrint {
                 // 디렉터리라면
                 if (file.isDirectory()) {
                     // 버퍼에 디렉터리+디렉터리 이름의 문자열을 추가한다.
-                    fileNameStrBuf.append("Directory " + file.getName());
+                    fileNameStrBuf.append("Directory ") //
+                            .append(file.getName());
                     // 디렉터리의 하위 디렉터리/파일을 순회하기 위해 메서드 호출
                     printFile(file);
                     // 파일이라면
